@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour {
 	void Update () {
 
         NearWall();  
-        SeePlayer();
+        SeePlayerTest1();
         OnGround();
         body.velocity = new Vector2(turn*currentSpeed, body.velocity.y);
     }
@@ -91,6 +91,38 @@ public class Enemy : MonoBehaviour {
             }
         }
         return;
+    }
+
+    private void SeePlayerTest1()
+    {
+        Vector2 position = transform.position;
+        Vector2 direction = new Vector2(turn * 5, 0);
+        Vector2 size = new Vector2(3, 3);
+        float angle = 0f;
+        float distance = 5.0f;
+        RaycastHit2D hit = BoxCastScript.BoxCast(position, size, angle, direction, distance, playerLayer);    // Need BoxCastScript to work u can find it on my github
+        if (hit.collider != null)
+        {
+            if (hit.collider.name == "Player")
+            {
+                Debug.Log("Widze Cie!!");
+                currentSpeed = rageSpeed;
+            }
+            else
+            {
+                Debug.Log("Gdzie jestes?!!?!");
+                currentSpeed = defaultSpeed;
+            }
+        }
+    }
+
+    
+
+        private void SeePlayerTest2()
+    {
+        Vector2 position = transform.position;
+        Vector2 direction = new Vector2(turn * 5, 0);
+        float distance = 5.0f;
     }
 
 
